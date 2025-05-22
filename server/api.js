@@ -4,6 +4,7 @@ import cors from "cors";
 import fs from "fs";
 import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
+import nodemon from "nodemon";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: "https://ethels-80th-birthday.online",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"],
   })
 );
@@ -25,7 +26,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
 
-app.post("/api", (req, res) => {
+app.post("/", (req, res) => {
   console.log("Request body:", req.body);
   const { name, email, attending, otherguests } = req.body;
   const [firstName, lastName] = name.split(" ");
@@ -62,5 +63,5 @@ app.post("/api", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running at https://ethels-80th-birthday.online:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });

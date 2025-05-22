@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Suzanne Blanco-Miranda",
+        "email": "s_blanco@yahoo.co.uk",
+        "otherguests": "2",
+        "attending": true
+    },
+    {
+        "name": "Natasha Senior",
+        "email": "n_majoriesenior@live.com",
+        "otherguests": "1",
+        "attending": true
+    }
+]

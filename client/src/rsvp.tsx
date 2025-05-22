@@ -27,7 +27,7 @@ function RSVP() {
       return false;
     }
 
-    const pattern = /[<\\>]/;
+    const pattern = /[<\>]/;
     const refuse = fullname.match(pattern);
     if (refuse) {
       warning.current!.innerHTML =
@@ -50,7 +50,7 @@ function RSVP() {
       attending: accept ? true : false,
     };
 
-    fetch("/api", {
+    fetch("http://localhost:3000/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(attendanceObject),
@@ -70,7 +70,7 @@ function RSVP() {
           setotherguests("");
           setaccept(false);
           setreject(false);
-          messageRef.current!.classList.remove("show");
+          //messageRef.current!.classList.remove("show");
           messageRef.current!.firstElementChild!.innerHTML = "";
           setisvisible(false);
         }, 10000)
