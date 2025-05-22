@@ -1,0 +1,302 @@
+html {
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+.intro-container {
+  background-image: url(assets/leaf-bg.jpg);
+  padding: 30px;
+}
+
+.intro-container h1 {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.intro-container h4 {
+  text-transform: uppercase;
+  font-family: "century gothic";
+  font-weight: normal;
+}
+
+.intro-container {
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.intro-container p {
+  font-weight: 400;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  line-height: 150%;
+  color: #000;
+  
+}
+
+.intro-container span {
+  font-weight: 500;
+  font-size: 2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.trivia-title {
+  text-align: center;
+  padding: 20px;
+  background-image: url(assets/baloons-bg.jpg);
+  color: #000;
+  margin: 10px 0; 
+}
+
+.trivia-title h2 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.2 rem;
+}
+
+.trivia-title p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.fact-container .flip {
+  transform: rotateX(360deg);
+  transition: all 3s;
+}
+
+.fact-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 10px 0;
+  background-image: url(assets/leaf-bg.jpg);
+}
+.fact-container .num0 {
+  background-image: url(assets/globe.jpg);
+}
+
+.fact-container .num1 {
+  background-image: url(assets/family.jpg);
+}
+
+.fact-container .num2 {
+  background-image: url(assets/subject.jpg);
+}
+
+.fact-container .num3 {
+  background-image: url(assets/siblings.jpg);
+}
+
+.fact-container .num4 {
+  background-image: url(assets/food.jpg);
+}
+
+.fact-container .num5 {
+  background-image: url(assets/singer.jpg);
+}
+
+.fact-container .show-answer {
+  background-color: rgb(168, 243, 168);
+  width: 25%;
+  height: 150px;
+  padding: 20px;
+  margin: 30px auto;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "calibri light", sans-serif;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fact-container .show-answer p {
+  z-index: 10;
+  font-weight: 900;
+  color: #fff;
+  background-color: #52ac42;
+  border-radius: 20px;
+  padding: 6px 10px;
+}
+
+.fact-container .flip-colour {
+  background-color: #fff;
+}
+
+.address-container {
+  background-image: url(assets/baloons-bg.jpg);
+  padding: 30px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #25011e;
+}
+
+.address-container h2 {
+  text-align: center;
+}
+
+.address-details .time,
+.address,
+.parking,
+.dress-code,
+.details {
+  display: flex;
+}
+
+.address-details p.left {
+  width: 30%;
+  margin: 20px;
+}
+
+.address-details p.right {
+  width: 60%;
+  margin: 20px;
+}
+
+.registry {
+  padding: 30px;
+  margin: 10px 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #000;
+  text-align: center;
+  background-image: url(assets/leaf-bg.jpg);
+}
+
+.registry ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.registry li {
+  margin: 20px 0;
+}
+
+.registry li:hover {
+  color: #2806a0;
+  font-weight: bold;
+}
+
+.registry h2 {
+  margin: 30px 0;
+  text-transform: uppercase;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.form-container {
+  margin: 10px 0;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #25011e;
+  background-image: url(assets/abstract-bg.jpg);
+  padding: 30px;
+}
+
+input {
+  padding: 10px;
+  width: 50%;
+  margin: 10px 0;
+}
+
+.form-email,
+.form-name,
+.form-others,
+.response-buttons {
+  margin: 30px 0;
+}
+
+.form-others input {
+  width: 30%;
+}
+
+.response-buttons button,
+#submit {
+  padding: 20px;
+  border: none;
+  outline: none;
+  font: 0.8rem arial;
+  margin: 30px 20px;
+  width: 25%;
+  height: 60px;
+  background-color: #d8d3d6;
+  cursor: pointer;
+}
+
+.response-buttons .accept {
+  background-color: #76d87e;
+  color: #000;
+}
+
+.response-buttons .reject {
+  background-color: #e62636;
+  color: #fff;
+}
+
+.message {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin: 30px 0;
+  color: #fff;
+  background-color: #86eb8e;
+  padding: 20px;
+}
+p#browser-message {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.show {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px 0;
+  background-color: #a8ecae;
+  height: 250px;
+  position: relative;
+  background-image: url(assets/blue-bg.jpg);
+}
+
+.show p{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: #fff;
+font-size: 1.2rem;
+}
+
+form.hideForm {
+  display:none;
+}
+
+form.showForm{
+  display: block;
+}
+
+
+@media screen and (max-width: 700px) {
+  .fact-container .show-answer {
+    width: 35%;
+    margin: 30px auto;
+  }
+
+  .form-others input {
+    width: 80%;
+  }
+
+  input {
+    width: 80%;
+  }
+
+  .response-buttons button,
+  #submit {
+    font: 0.8rem arial;
+    width: 80%;
+  }
+}
