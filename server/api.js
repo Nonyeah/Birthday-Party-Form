@@ -5,12 +5,35 @@ import fs from "fs";
 import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
 import nodemon from "nodemon";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
+
+const mailOptions = {
+  from: process.env.EMAIL_USER,
+  to: `${process.env.EMAIL_USER}, nonyeulasi@hotmail.com`,
+  subject: "80th Birthday Party Guest List Update",
+  text: "Updated list of attendees on 1st November",
+  attachments: [
+    {
+      filename: "invitationList.txt",
+      path: path.join(__dirname, "invitationList.txt"),
+    },
+  ],
+};
 
 app.use(
   cors({
@@ -60,6 +83,19 @@ app.post("/", (req, res) => {
   } else {
     res.send(`Awww that's a pity ${firstName}, we're sorry you can't make it.`);
   }
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(
+        "Error:",
+        process.env.EMAIL_USER,
+        process.env.EMAIL_PASSWORD,
+        error
+      );
+    } else {
+      console.log("Info", info);
+    }
+  });
 });
 
 app.listen(PORT, () => {
