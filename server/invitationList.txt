@@ -76,5 +76,23 @@
         "email": "r_torrino@live.com",
         "otherguests": "2",
         "attending": true
+    },
+    {
+        "name": "Isaiah Ulasi",
+        "email": "isaiah_2003@hotmail.com",
+        "otherguests": "4",
+        "attending": true
+    },
+    {
+        "name": "Maggie Ulasi",
+        "email": "maggieulasi@yahoo.co.uk",
+        "otherguests": "4",
+        "attending": true
+    },
+    {
+        "name": "Joseph Ulasi",
+        "email": "joejoe_2005@live.com",
+        "otherguests": "4",
+        "attending": true
     }
 ]

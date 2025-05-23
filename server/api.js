@@ -26,7 +26,7 @@ const mailOptions = {
   from: process.env.EMAIL_USER,
   to: `${process.env.EMAIL_USER}, nonyeulasi@hotmail.com`,
   subject: "80th Birthday Party Guest List Update",
-  text: "Updated list of attendees on 1st November",
+  totalGuests: 0,
   attachments: [
     {
       filename: "invitationList.txt",
@@ -55,6 +55,7 @@ app.post("/", (req, res) => {
   const [firstName, lastName] = name.split(" ");
 
   const tempArray = [];
+  let guestCount = 0;
 
   try {
     const fileData = fs.readFileSync("invitationList.txt", "utf-8");
@@ -67,6 +68,12 @@ app.post("/", (req, res) => {
   }
 
   tempArray.push(req.body);
+  tempArray.forEach((guest) => {
+    if (guest.attending) {
+      let totalAttendees = Number(guest.otherguests) + 1;
+      guestCount += totalAttendees;
+    }
+  });
 
   fs.writeFile(
     "invitationList.txt",
@@ -83,6 +90,9 @@ app.post("/", (req, res) => {
   } else {
     res.send(`Awww that's a pity ${firstName}, we're sorry you can't make it.`);
   }
+
+  mailOptions.totalGuests = guestCount;
+  mailOptions.text = `Updated list of attendees on 1st November. Current total guest count ${mailOptions.totalGuests} `,
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
