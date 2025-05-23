@@ -44,7 +44,7 @@ const factData: Array<FactData> = [
 export default function Facts() {
   const factBlocks = factData.map((fact) => {
     return (
-      <CreateFacts id={fact.id} question={fact.question} answer={fact.answer} />
+      <CreateFacts key={fact.id} id={fact.id} question={fact.question} answer={fact.answer} />
     );
   });
 
