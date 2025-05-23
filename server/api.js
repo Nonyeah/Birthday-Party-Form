@@ -49,7 +49,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
 
-app.post("/", (req, res) => {
+app.post("/api", (req, res) => {
   console.log("Request body:", req.body);
   const { name, email, attending, otherguests } = req.body;
   const [firstName, lastName] = name.split(" ");
