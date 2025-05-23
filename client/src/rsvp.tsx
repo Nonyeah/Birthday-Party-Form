@@ -50,7 +50,7 @@ function RSVP() {
       attending: accept ? true : false,
     };
 
-    fetch("http://localhost:3000/", {
+    fetch("api/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(attendanceObject),

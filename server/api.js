@@ -37,7 +37,7 @@ const mailOptions = {
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https:ethels-80th-birthday.online",
     methods: ["GET", "POST"],
   })
 );
