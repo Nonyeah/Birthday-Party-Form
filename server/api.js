@@ -13,8 +13,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
-const pathAttending = path.join(__dirname, "confirmation_email.html");
-const pathNotAttending = path.join(__dirname, "decline_email.html");
+const pathAttending = path.join(__dirname, "confirmation_email.html"); //email attending path
+const pathNotAttending = path.join(__dirname, "decline_email.html"); //email not attending path
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
