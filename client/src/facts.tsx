@@ -9,30 +9,31 @@ interface FactData {
 const factData: Array<FactData> = [
   {
     id: "num0",
-    question: "Where was Ethel born?",
+    question: "Where was Mama Ethel born?",
     answer:
-      "The Nigeria eastern town of Otolo Nnewi, \
+      "The Nigeria eastern town of Umudim Nnewi, \
      but her childhood years were spent in Onitsha",
   },
   {
     id: "num1",
-    question: "How many siblings does Ethel have?",
-    answer: "She has 9 brothers and sisters! How amazing is that?",
+    question: "How many siblings does Mama Ethel have?",
+    answer: "She has 11 brothers and sisters! How amazing is that?",
   },
   {
     id: "num2",
-    question: "What was Ethel's favourite subject in school?",
+    question: "What was Mama Ethel's favourite subject in school?",
     answer: "English literature and English language were her top subjects.",
   },
   {
     id: "num3",
-    question: "How many children and grand children does Ethel have?",
+    question: "How many children and grand children does Mama Ethel have?",
     answer: "10! Can you believe it. But no great grand children yet!",
   },
   {
     id: "num4",
-    question: "What's Ethel's favourite food?",
-    answer: "Plantain and Jollof rice, well she is Nigerian after all!",
+    question: "What's Mama Ethel's favourite food?",
+    answer: "Mama Ethel loves a good Ofe Onugbu soup. \
+    She's also quite partial to a spicy Jollof rice. Well she is Nigerian after all!",
   },
   {
     id: "num5",

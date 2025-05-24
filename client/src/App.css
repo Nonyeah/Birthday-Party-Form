@@ -148,6 +148,7 @@ html {
 .address-details p.left {
   width: 30%;
   margin: 20px;
+  font-weight:bold;
 }
 
 .address-details p.right {
