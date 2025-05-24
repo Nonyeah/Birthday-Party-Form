@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 3000;
 const pathAttending = path.join(__dirname, "confirmation_email.html"); //email attending path
 const pathNotAttending = path.join(__dirname, "decline_email.html"); //email not attending path
 
+//create transporter for sending system emails
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -24,6 +25,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
+//transporter configuration for email sent to organiser
 const mailOptions = {
   from: process.env.EMAIL_USER,
   to: `${process.env.EMAIL_USER}, nonyeulasi@hotmail.com`,
@@ -37,9 +40,10 @@ const mailOptions = {
   ],
 };
 
+//transporter configuration for email sent to guests
 const guestMailOptions = {
   from: process.env.EMAIL_USER,
-  subject: "Woohoo! See you at the Party on November 1st",
+  subject: "Mama Ethels's 80th Birthday Bash!"
 };
 
 app.use(
@@ -75,6 +79,8 @@ app.post("/api", (req, res) => {
   }
 
   tempArray.push(req.body);
+
+  //tally total number of guests
   tempArray.forEach((guest) => {
     if (guest.attending) {
       let totalAttendees = Number(guest.otherguests) + 1;
@@ -82,6 +88,7 @@ app.post("/api", (req, res) => {
     }
   });
 
+  //update guest list 
   fs.writeFile(
     "invitationList.txt",
     JSON.stringify(tempArray, null, 4),
@@ -95,6 +102,7 @@ app.post("/api", (req, res) => {
       `That's awesome ${firstName}, we look forward to seeing you on 1st November!`
     );
 
+//send confirmation email to guest attending
     const htmlData = fs.readFileSync(pathAttending, "utf-8");
     guestMailOptions.html = htmlData;
     guestMailOptions.to = email.trim();
@@ -106,6 +114,7 @@ app.post("/api", (req, res) => {
       }
     });
   } else {
+//send confirmation email to guest that declined
     res.send(`Awww that's a pity ${firstName}, we're sorry you can't make it.`);
     const htmlData = fs.readFileSync(pathNotAttending, "utf-8");
     guestMailOptions.html = htmlData;
@@ -119,14 +128,13 @@ app.post("/api", (req, res) => {
     });
   }
 
+  //send email to event organiser with guest list attachment
   mailOptions.totalGuests = guestCount;
   (mailOptions.text = `Updated list of attendees on 1st November. Current total guest count ${mailOptions.totalGuests} `),
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.error(
           "Error:",
-          process.env.EMAIL_USER,
-          process.env.EMAIL_PASSWORD,
           error
         );
       } else {
