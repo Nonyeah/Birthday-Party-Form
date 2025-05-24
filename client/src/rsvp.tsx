@@ -135,6 +135,7 @@ function RSVP() {
                 value={email}
                 onChange={(e) => setemail(e.target.value)}
                 onFocus={handleEmailFocus}
+                required
               />
             </label>
           </div>

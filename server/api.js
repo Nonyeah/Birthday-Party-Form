@@ -13,6 +13,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
+const pathAttending = path.join(__dirname, "confirmation_email.html"); //email attending path
+const pathNotAttending = path.join(__dirname, "decline_email.html"); //email not attending path
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -33,6 +35,11 @@ const mailOptions = {
       path: path.join(__dirname, "invitationList.txt"),
     },
   ],
+};
+
+const guestMailOptions = {
+  from: process.env.EMAIL_USER,
+  subject: "Woohoo! See you at the Party on November 1st",
 };
 
 app.use(
@@ -64,7 +71,7 @@ app.post("/api", (req, res) => {
       tempArray.push(...guestList);
     }
   } catch (err) {
-    console.log("No existing file or invalid JSON.");
+    console.error("No existing file or invalid JSON.");
   }
 
   tempArray.push(req.body);
@@ -79,7 +86,7 @@ app.post("/api", (req, res) => {
     "invitationList.txt",
     JSON.stringify(tempArray, null, 4),
     (err) => {
-      if (err) console.log(err);
+      if (err) console.error(err);
     }
   );
 
@@ -87,25 +94,45 @@ app.post("/api", (req, res) => {
     res.send(
       `That's awesome ${firstName}, we look forward to seeing you on 1st November!`
     );
+
+    const htmlData = fs.readFileSync(pathAttending, "utf-8");
+    guestMailOptions.html = htmlData;
+    guestMailOptions.to = email.trim();
+    transporter.sendMail(guestMailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log(info.response);
+      }
+    });
   } else {
     res.send(`Awww that's a pity ${firstName}, we're sorry you can't make it.`);
+    const htmlData = fs.readFileSync(pathNotAttending, "utf-8");
+    guestMailOptions.html = htmlData;
+    guestMailOptions.to = email.trim();
+    transporter.sendMail(guestMailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log(info.response);
+      }
+    });
   }
 
   mailOptions.totalGuests = guestCount;
-  mailOptions.text = `Updated list of attendees on 1st November. Current total guest count ${mailOptions.totalGuests} `,
-
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(
-        "Error:",
-        process.env.EMAIL_USER,
-        process.env.EMAIL_PASSWORD,
-        error
-      );
-    } else {
-      console.log("Info", info);
-    }
-  });
+  (mailOptions.text = `Updated list of attendees on 1st November. Current total guest count ${mailOptions.totalGuests} `),
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.error(
+          "Error:",
+          process.env.EMAIL_USER,
+          process.env.EMAIL_PASSWORD,
+          error
+        );
+      } else {
+        console.log("Info", info);
+      }
+    });
 });
 
 app.listen(PORT, () => {
