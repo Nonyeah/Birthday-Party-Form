@@ -12,7 +12,7 @@ html {
 .intro-container .photo{
   width:300px;
   height:300px;
-  border: 3px solid goldenrod;
+  border: 1px solid #f88dcf;
   border-radius:50%;
   display:inline-block;
   background-image: url(assets/ethel.jpg);
