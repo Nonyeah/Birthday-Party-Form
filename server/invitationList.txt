@@ -4,11 +4,5 @@
         "email": "nonyeulasi@hotmail.com",
         "otherguests": "1",
         "attending": true
-    },
-    {
-        "name": "Nonye Ulasi",
-        "email": "nonyeulasi@hotmail.com",
-        "otherguests": "",
-        "attending": false
     }
 ]

@@ -48,7 +48,7 @@ const guestMailOptions = {
 
 app.use(
   cors({
-    origin: "https:ethels-80th-birthday.online",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"],
   })
 );
@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
 
-app.post("/api", (req, res) => {
+app.post("/", (req, res) => {
   console.log("Request body:", req.body);
   const { name, email, attending, otherguests } = req.body;
   const [firstName, lastName] = name.split(" ");
