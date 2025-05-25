@@ -4,6 +4,11 @@ export default function Address() {
       <h2>Where We Plan To Party?</h2>
 
       <div className="address-details">
+
+        <div className="time">
+          <p className="left">Date</p>
+          <p className="right">November 1st 2025</p>
+        </div>
         
         <div className="time">
           <p className="left">Time</p>
@@ -13,9 +18,9 @@ export default function Address() {
         <div className="address">
           <p className="left">Where:</p>
           <ul className="right">
-            <li>Learie Constantine Centre or Churchend & Roundwood Unity Centre (precise location TBC) </li>
-            <li>Dollis Hill/ Church Road Harlesden</li>
-            <li> NW2 5PU/ NW10 9EG</li>
+            <li>Learie Constantine Centre </li>
+            <li>Villiers Road (nearest tube station - Dollis Hill)</li>
+            <li> NW2 5PU</li>
           </ul>
         </div>
 
