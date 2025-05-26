@@ -31,7 +31,6 @@ const mailOptions = {
   from: process.env.EMAIL_USER,
   to: `${process.env.EMAIL_USER}, nonyeulasi@hotmail.com`,
   subject: "80th Birthday Party Guest List Update",
-  totalGuests: 0,
   attachments: [
     {
       filename: "invitationList.txt",
@@ -48,7 +47,7 @@ const guestMailOptions = {
 
 app.use(
   cors({
-    origin: "https://ethels-80th-birthday.online",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"],
   })
 );
@@ -60,13 +59,17 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
 
-app.post("/api", (req, res) => {
+app.post("/", (req, res) => {
   console.log("Request body:", req.body);
   const { name, email, attending, otherguests } = req.body;
   const [firstName, lastName] = name.split(" ");
 
   const tempArray = [];
   let guestCount = 0;
+  let htmlFragment = 
+  "<html><head><style>h2{padding:30px;text-align:center;font-size:20px;text-transform:uppercase}\
+  body{text-align:left;text-transform:capitalize;font-size:16px}</style>\
+  </head><body><h2>List of attendees</h2><ol>";
 
   try {
     const fileData = fs.readFileSync("invitationList.txt", "utf-8");
@@ -85,8 +88,11 @@ app.post("/api", (req, res) => {
     if (guest.attending) {
       let totalAttendees = Number(guest.otherguests) + 1;
       guestCount += totalAttendees;
-    }
+      htmlFragment += `<li>${guest.name}</li>`;
+    }   
   });
+
+  htmlFragment += `</ol><p>Total number of guests confirmed as attending so far: ${guestCount}</p></body></html>`;
 
   //update guest list 
   fs.writeFile(
@@ -129,8 +135,8 @@ app.post("/api", (req, res) => {
   }
 
   //send email to event organiser with guest list attachment
-  mailOptions.totalGuests = guestCount;
-  (mailOptions.text = `Updated list of attendees on 1st November. Current total guest count ${mailOptions.totalGuests} `),
+  mailOptions.html = htmlFragment;
+  (mailOptions.text = `Updated list of attendees on 1st November. Current total guest count ${guestCount} `),
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.error(

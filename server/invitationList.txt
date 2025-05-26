@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Nonye Ulasi",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "1",
+        "attending": true
+    },
+    {
+        "name": "chuma ulasi",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "4",
+        "attending": true
+    },
+    {
+        "name": "Obinna Ulasi",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "5",
+        "attending": true
+    },
+    {
+        "name": "Eke Ulasi",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "",
+        "attending": true
+    },
+    {
+        "name": "Charlotte Anoom",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "3",
+        "attending": true
+    }
+]
