@@ -28,5 +28,11 @@
         "email": "nonyeulasi@hotmail.com",
         "otherguests": "3",
         "attending": true
+    },
+    {
+        "name": "jennifer Okonkwo",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "5",
+        "attending": true
     }
 ]
