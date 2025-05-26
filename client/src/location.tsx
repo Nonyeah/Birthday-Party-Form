@@ -6,13 +6,13 @@ export default function Address() {
       <div className="address-details">
 
         <div className="time">
-          <p className="left">Date</p>
+          <p className="left">Date:</p>
           <p className="right">November 1st 2025</p>
         </div>
         
         <div className="time">
-          <p className="left">Time</p>
-          <p className="right">5pm to 12pm</p>
+          <p className="left">Time:</p>
+          <p className="right">5pm to 12 midnight</p>
         </div>
 
         <div className="address">
