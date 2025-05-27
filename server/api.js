@@ -61,23 +61,29 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   console.log("Request body:", req.body);
   const { name, email, attending, otherguests } = req.body;
-  
+
   //check name for Mr/Mrs/Dr prefixes
   let prefix1, prefix2, ampersand, guestName, firstName;
+  
+  const removePrefix = () => {
+    if (
+      name.toLowerCase().includes("mr") &&
+      name.toLowerCase().includes("mrs")
+    ) {
+      [prefix1, ampersand, prefix2, guestName] = name.split(" ");
+    } else if (
+      name.toLowerCase().includes("mrs") ||
+      name.toLowerCase().includes("dr") ||
+      name.toLowerCase().includes("miss") ||
+      name.toLowerCase().includes("ms")
+    ) {
+      [prefix1, guestName] = name.split(" ");
+    } else {
+      [firstName] = name.split(" ");
+    }
+  };
 
-  if (name.toLowerCase().includes("mr") && name.toLowerCase().includes("mrs")) {
-    [prefix1, ampersand, prefix2, guestName] = name.split(" ");
-  } else if (
-    name.toLowerCase().includes("mrs") ||
-    name.toLowerCase().includes("mr") ||
-    name.toLowerCase().includes("dr") ||
-    name.toLowerCase().includes("miss") ||
-    name.toLowerCase().includes("ms")
-  ) {
-    [prefix1, guestName] = name.split(" ");
-  } else {
-    [firstName] = name.split(" ");
-  }
+  removePrefix();
 
   const tempArray = [];
   let guestCount = 0;
@@ -86,30 +92,34 @@ app.post("/", (req, res) => {
   body{text-align:left;text-transform:capitalize;font-size:16px}</style>\
   </head><body><h2>List of attendees</h2><ol>";
 
-  try {
-    const fileData = fs.readFileSync("invitationList.txt", "utf-8");
-    if (fileData) {
-      const guestList = JSON.parse(fileData);
-      tempArray.push(...guestList);
+  const updateInviteList = () => {
+    try {
+      const fileData = fs.readFileSync("invitationList.txt", "utf-8");
+      if (fileData) {
+        const guestList = JSON.parse(fileData);
+        tempArray.push(...guestList);
+      }
+    } catch (err) {
+      console.error("No existing file or invalid JSON.");
     }
-  } catch (err) {
-    console.error("No existing file or invalid JSON.");
-  }
 
-  tempArray.push(req.body);
+    tempArray.push(req.body);
 
-  //tally total number of guests
-  tempArray.forEach((guest) => {
-    if (guest.attending) {
-      let totalAttendees = Number(guest.otherguests) + 1;
-      guestCount += totalAttendees;
-      htmlFragment += `<li>${guest.name}</li>`;
-    }
-  });
+    //tally total number of guests
+    tempArray.forEach((guest) => {
+      if (guest.attending) {
+        let totalAttendees = Number(guest.otherguests) + 1;
+        guestCount += totalAttendees;
+        htmlFragment += `<li>${guest.name}</li>`;
+      }
+    });
 
-  htmlFragment += `</ol><p>Total number of guests confirmed as attending so far: ${guestCount}</p></body></html>`;
+    htmlFragment += `</ol><p>Total number of guests confirmed as attending so far: ${guestCount}</p></body></html>`;
+  };
 
-  //update guest list
+  updateInviteList();
+
+  //update and save new guest list file
   fs.writeFile(
     "invitationList.txt",
     JSON.stringify(tempArray, null, 4),
@@ -120,38 +130,52 @@ app.post("/", (req, res) => {
 
   if (attending) {
     res.send(
-      `That's awesome ${firstName ? firstName : guestName}, we look forward to seeing you on 1st November!`
+      `That's awesome ${
+        firstName ? firstName : guestName
+      }, we look forward to seeing you on 1st November!`
     );
 
     //send confirmation email to guest attending
-    const htmlData = fs.readFileSync(pathAttending, "utf-8");
-    guestMailOptions.html = htmlData;
-    guestMailOptions.to = email.trim();
-    transporter.sendMail(guestMailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log(info.response);
-      }
-    });
+
+    const confirmationYes = () => {
+      const htmlData = fs.readFileSync(pathAttending, "utf-8");
+      guestMailOptions.html = htmlData;
+      guestMailOptions.to = email.trim();
+
+      transporter.sendMail(guestMailOptions, (error, info) => {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log(info.response);
+        }
+      });
+    };
+    confirmationYes();
   } else {
     //send confirmation email to guest that declined
-    res.send(`Awww that's a pity ${firstName ? firstName : guestName}, we're sorry you can't make it.`);
-    const htmlData = fs.readFileSync(pathNotAttending, "utf-8");
-    guestMailOptions.html = htmlData;
-    guestMailOptions.to = email.trim();
-    transporter.sendMail(guestMailOptions, (error, info) => {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log(info.response);
-      }
-    });
+    res.send(
+      `Awww that's a pity ${
+        firstName ? firstName : guestName
+      }, we're sorry you can't make it.`
+    );
+
+    const confirmationNo = () => {
+      const htmlData = fs.readFileSync(pathNotAttending, "utf-8");
+      guestMailOptions.html = htmlData;
+      guestMailOptions.to = email.trim();
+      transporter.sendMail(guestMailOptions, (error, info) => {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log(info.response);
+        }
+      });
+    };
+    confirmationNo();
   }
 
   //send email to event organiser with guest list attachment
   mailOptions.html = htmlFragment;
-  (mailOptions.text = `Updated list of attendees on 1st November. Current total guest count ${guestCount} `),
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.error("Error:", error);

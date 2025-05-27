@@ -22,5 +22,11 @@
         "email": "nonyeulasi@hotmail.com",
         "otherguests": "4",
         "attending": true
+    },
+    {
+        "name": "Mr and Mrs Smith",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "2",
+        "attending": true
     }
 ]
