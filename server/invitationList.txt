@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Mr and Mrs Ulasi",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "",
+        "attending": true
+    },
+    {
+        "name": "Mr and Mrs Obiamalu",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "2",
+        "attending": true
+    },
+    {
+        "name": "Miss Nonye Ulasi",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "",
+        "attending": false
+    },
+    {
+        "name": "Dr Wilson Onyeka",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "4",
+        "attending": true
+    }
+]
