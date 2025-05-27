@@ -64,7 +64,7 @@ app.post("/", (req, res) => {
 
   //check name for Mr/Mrs/Dr prefixes
   let prefix1, prefix2, ampersand, guestName, firstName;
-  
+
   const removePrefix = () => {
     if (
       name.toLowerCase().includes("mr") &&
@@ -120,13 +120,17 @@ app.post("/", (req, res) => {
   updateInviteList();
 
   //update and save new guest list file
-  fs.writeFile(
-    "invitationList.txt",
-    JSON.stringify(tempArray, null, 4),
-    (err) => {
-      if (err) console.error(err);
-    }
-  );
+  const saveInviteList = () => {
+    fs.writeFile(
+      "invitationList.txt",
+      JSON.stringify(tempArray, null, 4),
+      (err) => {
+        if (err) console.error(err);
+      }
+    );
+  };
+
+  saveInviteList();
 
   if (attending) {
     res.send(
@@ -136,7 +140,6 @@ app.post("/", (req, res) => {
     );
 
     //send confirmation email to guest attending
-
     const confirmationYes = () => {
       const htmlData = fs.readFileSync(pathAttending, "utf-8");
       guestMailOptions.html = htmlData;
@@ -175,7 +178,9 @@ app.post("/", (req, res) => {
   }
 
   //send email to event organiser with guest list attachment
-  mailOptions.html = htmlFragment;
+
+  const confirmationOrganiser = () => {
+    mailOptions.html = htmlFragment;
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.error("Error:", error);
@@ -183,6 +188,8 @@ app.post("/", (req, res) => {
         console.log("Info", info);
       }
     });
+  };
+  confirmationOrganiser();
 });
 
 app.listen(PORT, () => {

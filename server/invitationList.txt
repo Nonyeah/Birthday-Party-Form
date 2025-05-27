@@ -28,5 +28,11 @@
         "email": "nonyeulasi@hotmail.com",
         "otherguests": "2",
         "attending": true
+    },
+    {
+        "name": "Obinna Ulasi",
+        "email": "nonyeulasi@hotmail.com",
+        "otherguests": "4",
+        "attending": true
     }
 ]
