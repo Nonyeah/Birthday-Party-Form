@@ -11,8 +11,8 @@ const factData: Array<FactData> = [
     id: "num0",
     question: "Where was Mama Ethel born?",
     answer:
-      "The Nigeria eastern town of Umudim Nnewi, \
-     but her childhood years were spent in Onitsha",
+      "The Nigeria eastern town of Onitsha, but\
+      her family roots are in Nnewi",
   },
   {
     id: "num1",
@@ -32,7 +32,8 @@ const factData: Array<FactData> = [
   {
     id: "num4",
     question: "What's Mama Ethel's favourite food?",
-    answer: "Mama Ethel loves a good Ofe Onugbu soup. \
+    answer:
+      "Mama Ethel loves a good Ofe Onugbu soup. \
     She's also quite partial to a spicy Jollof rice. Well she is Nigerian after all!",
   },
   {
@@ -45,7 +46,12 @@ const factData: Array<FactData> = [
 export default function Facts() {
   const factBlocks = factData.map((fact) => {
     return (
-      <CreateFacts key={fact.id} id={fact.id} question={fact.question} answer={fact.answer} />
+      <CreateFacts
+        key={fact.id}
+        id={fact.id}
+        question={fact.question}
+        answer={fact.answer}
+      />
     );
   });
 
