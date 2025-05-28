@@ -12,7 +12,7 @@ export default function Address() {
         
         <div className="time">
           <p className="left">Time:</p>
-          <p className="right">5pm to 12 midnight</p>
+          <p className="right">6pm-11pm</p>
         </div>
 
         <div className="address">
@@ -41,7 +41,7 @@ export default function Address() {
             <p className="left">Details:</p>
           <p className="right">
             Please arrive early so you don't miss out on the good parts
-            of the day. 
+            of the event
           </p>
         </div>
      

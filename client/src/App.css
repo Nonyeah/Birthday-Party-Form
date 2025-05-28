@@ -109,7 +109,7 @@ html {
 }
 
 .fact-container .show-answer {
-  background-color: rgb(168, 243, 168);
+  background-color: #b9e7f3;
   width: 25%;
   height: 150px;
   padding: 20px;
@@ -133,7 +133,7 @@ html {
 }
 
 .fact-container .flip-colour {
-  background-color: #f3f58d;
+  background-color: #6a82ec;
 }
 
 .address-container {
