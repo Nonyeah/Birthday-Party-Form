@@ -167,6 +167,13 @@ html {
   margin: 20px;
 }
 
+ .address ul.right{
+  list-style-type: none;
+  margin: 20px 0;
+  padding: 0 20px;
+  
+}
+
 .registry {
   padding: 30px;
   margin: 10px 0;
