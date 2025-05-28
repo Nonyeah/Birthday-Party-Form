@@ -40,8 +40,10 @@ export default function Address() {
         <div className="details">
             <p className="left">Details:</p>
           <p className="right">
-            Please arrive early so you don't miss out on the good parts
-            of the event
+            Please arrive on time so you don't miss out on the good parts
+            of the evening. This is an adult only event so we politely ask that  
+            only those directly invited attend. We can of course accommodate adult 
+            family members who are accompanying elderly guests.
           </p>
         </div>
      
