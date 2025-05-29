@@ -107,6 +107,7 @@ function RSVP() {
       <form className={isvisible ? "hideForm" : "showForm"} onSubmit={send}>
         <div className="form-container">
           <h2>RSVP</h2>
+          <p className="rsvp-date">Kindly RSVP before 30th June 2025</p>
           <p ref={warning}></p>
           <div className="form-name">
             <label>

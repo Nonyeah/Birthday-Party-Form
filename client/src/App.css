@@ -193,6 +193,7 @@ html {
 
 .registry li {
   margin: 20px 0;
+  font-weight: 500;
 }
 
 .registry li:hover {
@@ -214,6 +215,9 @@ html {
   color: #25011e;
   background-image: url(assets/abstract-bg.jpg);
   padding: 30px;
+}
+.rsvp-date {
+  font-weight: bold;
 }
 
 input {

@@ -20,7 +20,7 @@ export default function Address() {
           <ul className="right">
             <li>Learie Constantine Centre </li>
             <li>Villiers Road (nearest tube station - Dollis Hill)</li>
-            <li> NW2 5PU</li>
+            <li> NW2 2FD</li>
           </ul>
         </div>
 
